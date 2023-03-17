@@ -1,0 +1,32 @@
+Step #1 - Create express generator app (npx express-generator)
+
+Step #2- Install Mongoose Library (npm install mongoose --save) 
+
+Step #3- Import Mongoose Library in our app.js
+
+Step #4- Create a Models folder
+
+Step #5- Create a schema for your collection
+
+Step #6- Create a Mongoose Model of the same schema collection
+
+Step #7- Import the newly created model to app.js
+
+
+``````````````````````````````````````````````````````````````
+
+Step #8- Create the mongoDB connection
+
+Step #9- Create new object of model
+
+Step #10- Call save method which will do a -> Create/POST method for our collection
+
+
+`````````````````````````````````````````````````````````````````````
+
+Step #11- Refactor our code
+-made the method-post
+-made the data dynamic in nature
+    - i.e coming from the requre object
+
+Step #12- Using postman
