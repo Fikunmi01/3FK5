@@ -20,7 +20,7 @@ router.post("/add", (req, res, next) => {
   newStudent
     .save()
     .then(() => console.log("MongoDB connected successfully"))
-    .catch((err) => console.log(err));
+    .catch((err) => res.send(err));
 
   res.send({
     status: 200,
@@ -28,16 +28,96 @@ router.post("/add", (req, res, next) => {
     studentObj: newStudent,
   });
 });
+
+// Search all
+router.get("/list", (req, res, next) => {
+  StudentModel.find()
+    .then((students) => {
+      res.send({
+        status: 200,
+        resultsFound: students.length,
+        students: students,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
+// find by firstname
+router.get("/searchByFirstName", (req, res, next) => {
+  const firstNameQuery = req.query.firstName;
+  StudentModel.find({ firstName: firstNameQuery })
+    .then((firstName) => {
+      res.send({
+        status: 200,
+        resultsFound: firstName.length,
+        firstName: firstName,
+      });
+    })
+
+    .catch((err) => res.send(err));
+});
+
+router.get("/searchById", (req, res, next) => {
+  const idQuery = req.query.id;
+  StudentModel.findById(idQuery)
+    .then((student) => {
+      res.send({
+        status: 200,
+        student: student,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
+router.put("/update", (req, res, next) => {
+  const department = req.query.department;
+  StudentModel.updateOne({ age: 40 }, { department: department })
+    .then((student) => {
+      res.send({
+        status: 200,
+        student: student,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
+router.put("/updateUser", (req, res, next) => {
+  const id = req.query.id;
+  const firstName = req.query.firstName;
+  StudentModel.findByIdAndUpdate(id, { firstName: firstName })
+    .then((student) => {
+      res.send({
+        status: 200,
+        student: student,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
+router.put("/updateLastName", (req, res, next) => {
+  const id = req.query.id;
+  const lastName = req.query.lastName;
+  StudentModel.findByIdAndUpdate(id, { lastName: lastName })
+    .then((student) => {
+      res.send({
+        status: 200,
+        student: student,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
+router.delete("/deleteUser", (req, res) => {
+  const idQuery = req.query.id;
+
+  StudentModel.findByIdAndDelete(idQuery)
+    .then((student) => {
+      res.send({
+        status: 200,
+        student: student,
+      });
+    })
+    .catch((err) => res.send(err));
+});
+
 module.exports = router;
-
-
-
-  //   newStudent.save((err, newStudent) => {
-  //     if (err) res.send(err);
-  //     else
-  //       res.send({
-  //         status: 200,
-  //         message: "User successfully added",
-  //         studentObj: newStudent,
-  //       });
-  //   });

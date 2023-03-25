@@ -30,3 +30,20 @@ Step #11- Refactor our code
     - i.e coming from the requre object
 
 Step #12- Using postman
+
+```````````````````````````````````````````````````````````````
+
+Step #13- Reading data from collections
+
+find
+-   Read all data from collection
+-   Read some data based on conditions
+        -Query
+
+-Read a particular data
+    findById
+
+
+````````````````````````````````````````````````````````````````
+
+Step #14- Update method
